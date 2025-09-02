@@ -1,0 +1,9 @@
+SELECT e1.name
+FROM Employee AS e1 
+INNER JOIN (SELECT e2.managerId
+            FROM Employee AS e2 
+            GROUP BY managerId
+            HAVING COUNT(managerId) >= 5) AS e3
+ON e1.id = e3.managerId;
+
+Note: 有两个相同的名字，还有as e2里面的内容格式也要注意。
