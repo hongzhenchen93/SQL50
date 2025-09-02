@@ -1,0 +1,5 @@
+SELECT w2.id 
+FROM Weather AS w1, Weather AS w2 
+WHERE DATEDIFF(w2.recordDate, w1.recordDate) = 1 AND w2.temperature > w1.temperature;
+
+Note: 有点陷入了思维的误区，思路其实很简单的，思路跟着问题走就行了。不要去思考什么LAG Function.
