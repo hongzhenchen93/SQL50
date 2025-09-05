@@ -1,0 +1,9 @@
+SELECT ROUND((SELECT COUNT(DISTINCT a.player_id)
+             FROM Activity AS a 
+             INNER JOIN (SELECT b.player_id, MIN(event_date) AS first_logged
+                         FROM Activity AS b 
+                         GROUP BY b.player_id) AS c
+             ON a.player_id = c.player_id AND DATEDIFF(a.event_date, c.first_logged)=1)
+             / (SELECT COUNT(DISTINCT player_id) FROM Activity), 2) AS fraction;
+
+Note: 思考问题的思路不清晰，顺着题目的问题会有点思路的。代码的语句有点不清楚。
