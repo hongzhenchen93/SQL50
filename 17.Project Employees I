@@ -1,0 +1,4 @@
+SELECT a.project_id, ROUND(SUM(experience_years) / COUNT(a.project_id), 2) AS average_years
+FROM Project AS a 
+LEFT JOIN Employee AS b ON a.employee_id = b.employee_id
+GROUP BY a.project_id;
