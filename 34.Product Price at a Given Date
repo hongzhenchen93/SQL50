@@ -1,0 +1,15 @@
+SELECT DISTINCT p1.product_id, IFNULL(p4.new_price, 10) price
+FROM Products AS p1 
+LEFT JOIN (
+           SELECT p2.product_id, p2.new_price
+           FROM Products AS p2
+           WHERE (product_id, change_date) IN (
+                                               SELECT p3.product_id, MAX(p3.change_date) AS change_date
+                                               FROM Products AS p3
+                                               WHERE change_date <= "2019-08-16"
+                                               GROUP BY p3.product_id
+                                               
+                                              )
+          ) AS p4 ON p1.product_id = p4.product_id;
+
+Note:MAX(change_date)
