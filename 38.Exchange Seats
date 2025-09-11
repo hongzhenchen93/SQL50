@@ -1,0 +1,11 @@
+SELECT (
+        CASE 
+            WHEN MOD(id, 2) != 0 AND id != COUNTS THEN id + 1
+            WHEN MOD(id, 2) != 0 AND id = COUNTS THEN id 
+            ELSE id - 1
+        END
+        ) AS id, student
+FROM Seat, (SELECT COUNT(*) AS COUNTS FROM Seat) AS NUM_COUNTS 
+ORDER BY id;
+
+Note:人家的思路好清晰呀，借鉴一下。
