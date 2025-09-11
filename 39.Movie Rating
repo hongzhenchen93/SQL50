@@ -1,0 +1,19 @@
+(
+SELECT u1.name AS results
+FROM Users AS u1 
+LEFT JOIN MovieRating AS mr1 ON u1.user_id = mr1.user_id
+GROUP BY mr1.user_id
+ORDER BY COUNT(mr1.movie_id) DESC, u1.name
+LIMIT 1
+)
+UNION ALL
+(
+SELECT m1.title AS results
+FROM Movies AS m1
+LEFT JOIN MovieRating AS mr2 ON m1.movie_id = mr2.movie_id AND mr2.created_at BETWEEN "2020-02-01" AND "2020-02-29"
+GROUP BY mr2.movie_id
+ORDER BY AVG(mr2.rating)DESC, m1.title
+LIMIT 1
+);
+
+Note:UNION ALL保留所有行，包括重复行。
