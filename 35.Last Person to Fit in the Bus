@@ -1,0 +1,14 @@
+SELECT a.person_name
+FROM (
+      SELECT person_name, @pre:= @pre + weight AS weight 
+      FROM Queue, (SELECT @pre:= 0) AS tmp
+      ORDER BY turn
+     ) AS a 
+WHERE a.weight <= 1000 
+ORDER BY a.weight DESC
+LIMIT 1;
+
+Note:思路很简单，不过不知道如何用代码去实现。
+需要注意的知识点：
+@pre:=@pre + weight
+(SELECT @pre:=0) AS tmp
