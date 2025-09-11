@@ -1,0 +1,6 @@
+SELECT p1.product_name, SUM(unit) AS unit 
+FROM Products AS p1 
+INNER JOIN Orders AS o1 ON p1.product_id = o1.product_id 
+AND order_date BETWEEN "2020-02-01" AND "2020-02-29"
+GROUP BY p1.product_name 
+HAVING SUM(unit) >= 100;
