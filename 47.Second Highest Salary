@@ -1,0 +1,10 @@
+SELECT IFNULL((SELECT DISTINCT salary 
+               FROM Employee 
+               ORDER BY salary DESC
+               LIMIT 1 OFFSET 1), NULL) AS SecondHighestSalary;
+
+Note:
+In MySQL, LIMIT 1 OFFSET 1 is used to retrieve the second row from a query’s result set.
+How it works:
+OFFSET 1: Skips the first row in the result set
+LIMIT 1:Returns only 1 row after skipping the offset
