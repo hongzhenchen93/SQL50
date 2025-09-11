@@ -1,0 +1,13 @@
+(SELECT "Low Salary" AS category,
+       SUM(income < 20000) AS accounts_count
+FROM Accounts)
+UNION
+(SELECT "Average Salary" AS category,
+       SUM(income >= 20000 AND income <= 50000) AS accounts_count
+FROM Accounts)
+UNION
+(SELECT "High Salary" AS category,
+       SUM(income > 50000) AS accounts_count
+FROM Accounts);
+
+Note: 需要学习如何进行命名分类，数数用Case function挺简单的。
